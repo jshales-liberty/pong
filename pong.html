@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pong Project</title>
+</head>
+<body>
+Pong Project
+<canvas id='canvas'; style="border: 1px solid black";
+></canvas>
+<script type="text/javascript">
+	var canvas = document.getElementById('canvas');
+	   var ctx = canvas.getContext('2d');
+        canvas.width = 800;
+        canvas.height = 500;
+        var ball_x_direction = 1;
+        var ball_y_direction = 1;
+		var ball_x = 400;
+		var ball_y = 75;
+		var ball_r = 25;
+        function draw(dt) {
+            // clear screen
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // draw rectangle
+            ctx.fillStyle = 'purple';
+        	ctx.fillRect(750,50,30,100);
+        	ctx.fillStyle = 'green';
+        	ctx.fillRect(50,50,30,100);
+        	ctx.fillStyle = 'red';
+        	ctx.beginPath();
+			ctx.arc(ball_x,ball_y,ball_r,0,2*Math.PI);
+			ctx.fill();
+            if (ball_x+ball_r>=canvas.width || ball_x-ball_r<0)
+            	{ball_x_direction = ball_x_direction * -1;}
+            if (ball_y+ball_r>=canvas.height || ball_y-ball_r<0)
+            	{ball_y_direction = ball_y_direction * -1;}
+            
+
+            if (ball_x_direction == 1)
+            {ball_x++;}
+        else if (ball_x_direction == -1)
+        	{ball_x--;}
+        	if (ball_y_direction ==1)
+        		{ball_y++;}
+        	else if (ball_y_direction == -1)
+        	{ball_y--;}
+        
+            window.requestAnimationFrame(draw);
+        }
+//keyup and keydown listeners
+        window.requestAnimationFrame(draw);
+
+
+
+</script>
+</body>
+</html>
